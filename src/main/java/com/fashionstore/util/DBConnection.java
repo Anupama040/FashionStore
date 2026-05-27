@@ -23,9 +23,9 @@ public class DBConnection {
 
             properties.load(input);
 
-            url = properties.getProperty("db.url");
-            username = properties.getProperty("db.username");
-            password = properties.getProperty("db.password");
+            url = System.getenv("DB_URL") != null ? System.getenv("DB_URL") : properties.getProperty("db.url");
+            username = System.getenv("DB_USERNAME") != null ? System.getenv("DB_USERNAME") : properties.getProperty("db.username");
+            password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : properties.getProperty("db.password");
             driver = properties.getProperty("db.driver");
 
             Class.forName(driver);
