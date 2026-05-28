@@ -36,7 +36,11 @@ public class DBConnection {
 
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection(url, username, password);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String finalUrl = url != null ? url.trim() : "";
+            String finalUser = username != null ? username.trim() : "";
+            String finalPass = password != null ? password.trim() : "";
+            return DriverManager.getConnection(finalUrl, finalUser, finalPass);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
